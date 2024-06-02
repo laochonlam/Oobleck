@@ -192,7 +192,8 @@ class MultiNodeAgentRunner:
 
         try:
             with fabric.Connection(host.ip, port=host.port, connect_timeout=30) as conn:
-                cmd = f"{sys.executable} -m oobleck.elastic.agent "
+                cmd = f"docker exec 24_05_oobleck_test "
+                cmd += f"{sys.executable} -m oobleck.elastic.agent "
                 cmd += f"--master_ip {my_ip} --master_port {master_service_port} "
                 cmd += f"--agent_index {agent_index} "
                 cmd += f"--tag {tag} --base_dir {str(base_dir)}"
