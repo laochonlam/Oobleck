@@ -163,8 +163,8 @@ class Agent:
             self.agent_index * tensor_parallel_size,
             (self.agent_index + 1) * tensor_parallel_size,
         )
-
-        os.environ["TORCH_NCCL_USE_COMM_NONBLOCKING"] = "1"
+        # [lam] Rmove this to make nccl backend works
+        # os.environ["TORCH_NCCL_USE_COMM_NONBLOCKING"] = "1"
         os.environ["TORCH_NCCL_ASYNC_ERROR_HANDLING"] = "0"
         for gpu_index, rank in zip(gpu_indices, ranks):
             logger.info(f"Launching worker {rank} (GPU: {gpu_index})...")
